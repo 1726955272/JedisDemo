@@ -4,7 +4,9 @@ package org.example;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class TestDemo {
