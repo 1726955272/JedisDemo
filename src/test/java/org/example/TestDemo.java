@@ -1,15 +1,12 @@
 package org.example;
 
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-@Slf4j
+
 public class TestDemo {
     @Test
     public void test1(){
