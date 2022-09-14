@@ -72,9 +72,9 @@ public class TestDemo {
         String hget = jedis.hget("users", "age");
         System.out.println(hget);
         Map objectObjectMap = new HashMap();
-        objectObjectMap.put("telphone","13217925580");
+        objectObjectMap.put("telphone","00000000000");
         objectObjectMap.put("address","理塘");
-        objectObjectMap.put("email","1726955272@qq.com");
+        objectObjectMap.put("email","0000000@qq.com");
         jedis.hmset("hash02",objectObjectMap);
         List<String> hmget = jedis.hmget("hash02", "telphone", "address", "email");
         System.out.println(hmget);
