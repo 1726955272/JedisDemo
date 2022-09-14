@@ -8,7 +8,7 @@ import java.util.SortedMap;
 public class PhoneCode {
     public static void main(String[] args) {
         String code=GetCode();
-        String phone="13217925580";
+        String phone="0000000";
         CRRedis(phone,code);
         CYCode(code,phone);
     }
@@ -48,6 +48,7 @@ public class PhoneCode {
         }else{
             System.out.println("你今天已经发送了三次验证码了");
             jedis.close();
+            return;
         }
         jedis.close();
     }
