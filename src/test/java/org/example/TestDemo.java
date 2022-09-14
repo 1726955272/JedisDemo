@@ -41,6 +41,31 @@ public class TestDemo {
         jedis.lpush("user01","age","name","genter");
         List<String> user01 = jedis.lrange("user01", 0, -1);
         System.out.println(user01);
+    }
+    @Test
+    /**
+     * Redis存入Set
+     */
+    public void SetTest(){
+        Jedis jedis =  new Jedis("127.0.0.1",6379);
+        jedis.sadd("name","lucy","niuniu");
+        Set<String> name = jedis.smembers("name");
+        System.out.println(name);
+        jedis.sadd("orders","order01","order02","order03","order04");
+        Set<String> orders = jedis.smembers("orders");
+        for (String order:
+        orders) {
+            System.out.println(order);
+        }
+        orders.remove("order02");
+        jedis.srem("orders","order02");
+    }
+    @Test
+    /**
+     * Redis存入Hash
+     */
+    public void HashTest() {
+        Jedis jedis = new Jedis("127.0.0.1", 6379);
 
     }
 }
