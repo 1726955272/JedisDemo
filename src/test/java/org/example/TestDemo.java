@@ -1,12 +1,15 @@
 package org.example;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import redis.clients.jedis.Jedis;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
-
+@Slf4j
 public class TestDemo {
     @Test
     public void test1(){
@@ -41,6 +44,55 @@ public class TestDemo {
         jedis.lpush("user01","age","name","genter");
         List<String> user01 = jedis.lrange("user01", 0, -1);
         System.out.println(user01);
-
+    }
+    @Test
+    /**
+     * Redis存入Set
+     */
+    public void SetTest(){
+        Jedis jedis =  new Jedis("127.0.0.1",6379);
+        jedis.sadd("name","lucy","niuniu");
+        Set<String> name = jedis.smembers("name");
+        System.out.println(name);
+        jedis.sadd("orders","order01","order02","order03","order04");
+        Set<String> orders = jedis.smembers("orders");
+        for (String order:
+        orders) {
+            System.out.println(order);
+        }
+        orders.remove("order02");
+        jedis.srem("orders","order02");
+    }
+    @Test
+    /**
+     * Redis存入Hash
+     */
+    public void HashTest() {
+        Jedis jedis = new Jedis("127.0.0.1", 6379);
+        jedis.hset("users","age","20");
+        String hget = jedis.hget("users", "age");
+        System.out.println(hget);
+        Map objectObjectMap = new HashMap();
+        objectObjectMap.put("telphone","13217925580");
+        objectObjectMap.put("address","理塘");
+        objectObjectMap.put("email","1726955272@qq.com");
+        jedis.hmset("hash02",objectObjectMap);
+        List<String> hmget = jedis.hmget("hash02", "telphone", "address", "email");
+        System.out.println(hmget);
+    }
+    @Test
+    /**
+     * Redis存入zset
+     */
+    public void ZsetTest() {
+        Jedis jedis = new Jedis("127.0.0.1", 6379);
+        jedis.zadd("china",100d,"shanghai");
+        jedis.zadd("china",75d,"beijing");
+        jedis.zadd("china",90d,"hangzhou");
+        Set<String> china = jedis.zrange("china", 0, -1);
+        for (String s:
+        china) {
+            System.out.println(s);
+        }
     }
 }
